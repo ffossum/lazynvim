@@ -1,11 +1,11 @@
 return {
   "scalameta/nvim-metals",
-  dependencies = { "nvim-lua/plenary.nvim" },
+  dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
   keys = {
     {
       "<leader>mc",
       function()
-        require("telescope").extension.metals.commands()
+        require("telescope").extensions.metals.commands()
       end,
       desc = "Metals Commands",
     },
