@@ -13,7 +13,12 @@ return {
   },
   {
     "scalameta/nvim-metals",
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "folke/which-key.nvim",
+      "hrsh7th/cmp-nvim-lsp",
+    },
     keys = {
       {
         "<leader>mc",
@@ -24,6 +29,12 @@ return {
       },
     },
     init = function()
+      local wk = require("which-key")
+      wk.register({
+        mode = { "n" },
+        ["<leader>m"] = { name = "+metals" },
+      })
+
       local metals_config = require("metals").bare_config()
 
       -- *READ THIS*
