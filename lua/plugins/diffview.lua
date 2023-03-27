@@ -3,17 +3,21 @@ return {
     "sindrets/diffview.nvim",
     keys = {
       {
-        "<leader>gd",
+        "<leader>d",
+        desc = "+Diffview",
+      },
+      {
+        "<leader>do",
         "<cmd>DiffviewOpen<cr>",
         desc = "DiffviewOpen",
       },
       {
-        "<leader>gf",
+        "<leader>df",
         "<cmd>DiffviewFileHistory<cr>",
         desc = "DiffviewFileHistory",
       },
       {
-        "<leader>gF",
+        "<leader>dF",
         "<cmd>DiffviewFileHistory %<cr>",
         desc = "DiffviewFileHistory (current file)",
       },
@@ -21,7 +25,6 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
-      "folke/which-key.nvim",
     },
   },
 }
