@@ -89,6 +89,7 @@ return {
       "nvim-telescope/telescope.nvim",
       "folke/which-key.nvim",
       "hrsh7th/cmp-nvim-lsp",
+      "mfussenegger/nvim-dap",
     },
     keys = {
       {
@@ -114,13 +115,40 @@ return {
       -- you'll not see any messages from metals. There is more info in the help
       -- docs about this
       metals_config.init_options.statusBarProvider = "on"
+      metals_config.settings.enableSemanticHighlighting = false
 
       -- Example if you are using cmp how to make sure the correct capabilities for snippets are set
       metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", {
-        clear = true,
-      })
+      -- Debug settings if you're using nvim-dap
+      local dap = require("dap")
+
+      dap.configurations.scala = {
+        {
+          type = "scala",
+          request = "launch",
+          name = "RunOrTest",
+          metals = {
+            runType = "runOrTestFile",
+            --args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
+          },
+        },
+        {
+          type = "scala",
+          request = "launch",
+          name = "Test Target",
+          metals = {
+            runType = "testTarget",
+          },
+        },
+      }
+
+      metals_config.on_attach = function(_client, _bufnr)
+        require("metals").setup_dap()
+      end
+
+      -- Autocmd that will actually be in charging of starting the whole thing
+      local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
       vim.api.nvim_create_autocmd("FileType", {
         -- NOTE: You may or may not want java included here. You will need it if you
         -- want basic Java support but it may also conflict if you are using
