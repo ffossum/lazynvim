@@ -3,5 +3,3 @@
 -- Add any additional keymaps here
 --
 local map = vim.keymap.set
-
-map("n", "<leader>ch", vim.lsp.codelens.run, { desc = "Run CodeLens" })
