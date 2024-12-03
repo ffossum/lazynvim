@@ -8,8 +8,8 @@ return {
         "folke/which-key.nvim",
         optional = true,
         opts = {
-          defaults = {
-            ["<leader>D"] = { name = "+Diffview" },
+          spec = {
+            { "<leader>D", group = "Diffview" },
           },
         },
       },

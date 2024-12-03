@@ -1,6 +1,15 @@
 return {
+  --[[
   {
     "github/copilot.vim",
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    opts = {
+      experimental = {
+        ghost_text = false,
+      },
+    },
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
@@ -46,4 +55,5 @@ return {
     },
     -- See Commands section for default commands if you want to lazy load on them
   },
+  --]]
 }
